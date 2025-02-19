@@ -10,7 +10,7 @@ WORKDIR /opt
 
 # Install Jupyter Desktop dependencies, zip and vim, RStudio dependencies
 RUN apt-get -y update \
- && apt-get -y install --no-install-recommends \
+ && apt-get -y install \
     dbus-x11 \
     xfce4 \
     xfce4-panel \
@@ -39,7 +39,7 @@ RUN wget "https://download1.rstudio.org/electron/${UBUNTU_VERSION_CODENAME}/amd6
 USER $NB_USER
 WORKDIR /home/${NB_USER}
 
-# Install Jupyter Desktop
+# Install Jupyter Desktop proxy
 RUN /opt/conda/bin/conda install -y -q -c manics websockify
 RUN pip install jupyter-remote-desktop-proxy
 
